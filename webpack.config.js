@@ -4,7 +4,6 @@ import WebpackExtReloader from "webpack-ext-reloader";
 import { fileURLToPath } from 'url';
 import path from "path";
 
-
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
 export default {
@@ -50,7 +49,6 @@ export default {
             },
             reloadPage: true,
         }),
-
     ],
     output: {
         path: path.resolve(__dirname, 'dist'),
