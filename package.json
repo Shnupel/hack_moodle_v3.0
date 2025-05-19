@@ -1,0 +1,28 @@
+{
+  "name": "hack_moodle_v3",
+  "version": "3.0.0",
+  "description": "hack moodle script with developing enviroment",
+  "main": "index.js",
+  "scripts": {
+    "dev": "webpack",
+    "build": "cross-env NODE_ENV=production webpack"
+  },
+  "type": "module",
+  "author": "shnupel",
+  "license": "ISC",
+  "devDependencies": {
+    "babel-loader": "^10.0.0",
+    "copy-webpack-plugin": "^13.0.0",
+    "cross-env": "^7.0.3",
+    "css-loader": "^7.1.2",
+    "html-webpack-plugin": "^5.6.3",
+    "style-loader": "^4.0.0",
+    "svg-inline-loader": "^0.8.2",
+    "ts-loader": "^9.5.2",
+    "typescript": "^5.8.3",
+    "webpack": "^5.99.8",
+    "webpack-cli": "^6.0.1",
+    "webpack-ext-reloader": "^1.1.13",
+    "webpack-extension-reloader": "^1.1.4"
+  }
+}
