@@ -1,3 +1,99 @@
-.wrapper {
-    font-size: 30px;
+/* Базовые стили */
+.vpn-popup {
+    width: 300px;
+    padding: 16px;
+    font-family: Arial, sans-serif;
+    box-sizing: border-box;
+    background: #f5f5f5;
+}
+
+/* Заголовок */
+.vpn-popup__header {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.vpn-popup__logo {
+    width: 32px;
+    height: 32px;
+    margin-right: 10px;
+}
+
+.vpn-popup__title {
+    font-size: 18px;
+    margin: 0;
+    color: #333;
+}
+
+/* Контент */
+.vpn-popup__content {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+/* Переключатель */
+.vpn-popup__toggle {
+    padding: 12px 16px;
+    background: #e0e0e0;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    text-align: left;
+    transition: background 0.3s ease;
+}
+
+/*.vpn-popup__toggle:hover {*/
+/*    background: #d0d0d0;*/
+/*}*/
+
+.vpn-popup__toggle--active {
+    background: #4CAF50;
+}
+
+.vpn-popup__status {
+    padding: 15px 0;
+}
+
+.vpn-popup__toggle--active .vpn-popup__status {
+    color: white;
+}
+
+/* Статус */
+.vpn-popup__status-indicator {
+    display: flex;
+    justify-content: space-between;
+    font-size: 14px;
+    color: #666;
+}
+
+.vpn-popup__indicator-value--connected {
+    color: #4CAF50;
+    font-weight: bold;
+}
+
+#open-configs {
+    margin-top: 16px;
+    padding: 10px;
+    background: #f5f5f5;
+    color: #201e1e;
+    border: none;
+    border-radius: 4px;
+    font-size: 14px;
+    cursor: pointer;
+}
+
+.ai-variants {
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    color: #333;
+    font-size: 14px;
+}
+
+.ai-variants__input {
+    display: flex;
+    align-items: center;
+    margin-right: 15px;
 }

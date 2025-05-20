@@ -10,6 +10,7 @@ export default {
     entry: {
         content: path.resolve(__dirname, "./src/scripts/index.ts"),
         background: path.resolve(__dirname, "./src/scripts/background.ts"),
+        popup: path.resolve(__dirname, "./src/scripts/popup.ts"),
     },
     watch: true,
     watchOptions: {
@@ -46,6 +47,7 @@ export default {
             entries: {
                 background: "background",
                 contentScript: "content",
+                popup: "popup",
             },
             reloadPage: true,
         }),

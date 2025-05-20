@@ -2,12 +2,33 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport"
-          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
+    <link href="./styles/popUp.css" rel="stylesheet">
 </head>
 <body>
-    <div class="wrapper">extension popUp.</div>
+    <div class="wrapper">
+        <main class="vpn-popup">
+            <div class="vpn-popup__header">
+                <img src="icons/icon48.png" alt="VPN Logo" class="vpn-popup__logo">
+                <h1 class="vpn-popup__title">SecureVPN</h1>
+            </div>
+
+            <div class="vpn-popup__content">
+                <button class="vpn-popup__toggle" id="toggleButton">
+                    <span class="vpn-popup__status">Переключить</span>
+                </button>
+
+                <div class="vpn-popup__status-indicator">
+                    <span class="vpn-popup__indicator-label">Статус:</span>
+                    <span class="vpn-popup__indicator-value" id="statusText">Не подключено</span>
+                </div>
+            </div>
+        </main>
+        <footer id="footer">
+            <button id="open-configs">see more settings</button>
+        </footer>
+    </div>
 </body>
 </html>
