@@ -1,5 +1,5 @@
 import { QuestionParser } from "@src/QuestionParser";
-import { ImageObject } from "@src/QuestionParser/ImageObject";
+import { ImageParser } from "@QuestionParser/ImageParser";
 
 export interface AiRequest {
 	model: string;
@@ -7,7 +7,7 @@ export interface AiRequest {
 
 interface RequestData {
 	text: string;
-	images: ImageObject[]
+	images: ImageParser[]
 }
 
 export abstract class AbstractAIRequestBuilder<T extends AiRequest> {

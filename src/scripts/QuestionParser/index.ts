@@ -1,3 +1,5 @@
+import { ImageParser } from "@QuestionParser/ImageParser";
+
 export enum QuestionTypes {
 	TRUE_FALSE = "truefalse",
 	MATCH = "match",
@@ -102,8 +104,10 @@ class AnswerParser {
 
 export class QuestionParser {
 	private readonly task: HTMLElement;
+	private readonly imageParser: ImageParser
 	constructor(task: HTMLElement) {
 		this.task = task;
+		this.imageParser = new ImageParser();
 	}
 
 	private parseCondition(): string {
