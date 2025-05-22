@@ -1,9 +1,11 @@
+// may be write this in another folder?
+
 export interface IBuilderConfig {
 	name: string
 	versions: { name: string; version: string }[]
 }
 
-export class ConfigAIBuilder {
+export class ChooseConfig {
 	private static readonly list: string[] = ["ChatGpt", "Claude", "DeepSeek"];
 	// private readonly chosenConfiguration: configurationOfAi;
 

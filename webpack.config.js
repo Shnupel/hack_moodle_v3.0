@@ -1,8 +1,9 @@
 import HtmlWebpackPlugin from "html-webpack-plugin";
 import CopyWebpackPlugin from "copy-webpack-plugin";
 import WebpackExtReloader from "webpack-ext-reloader";
-import { fileURLToPath } from 'url';
+import {fileURLToPath} from 'url';
 import path from "path";
+import {TsconfigPathsPlugin} from "tsconfig-paths-webpack-plugin";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
@@ -15,18 +16,21 @@ export default {
     watch: true,
     watchOptions: {
         ignored: /node_modules/,
-        aggregateTimeout: 200,
-        poll: 1000
+        aggregateTimeout: 100,
+        poll: 500
     },
     resolve: {
+        plugins: [
+            new TsconfigPathsPlugin({}),
+        ],
         extensions: ['.ts', '.js']
     },
     module: {
         rules: [
-            { test: /\.svg$/, use: 'svg-inline-loader' },
-            { test: /\.css$/, use: [ 'style-loader', 'css-loader' ] },
-            { test: /\.ts$/, use: 'ts-loader', exclude: /node_modules/ },
-            { test: /\.js$/, use: 'babel-loader', exclude: /node_modules/ }
+            {test: /\.svg$/, use: 'svg-inline-loader'},
+            {test: /\.css$/, use: ['style-loader', 'css-loader']},
+            {test: /\.ts$/, use: 'ts-loader', exclude: /node_modules/},
+            {test: /\.js$/, use: 'babel-loader', exclude: /node_modules/}
         ]
     },
     plugins: [
@@ -38,8 +42,8 @@ export default {
         }),
         new CopyWebpackPlugin({
             patterns: [
-                { from: path.resolve(__dirname, "./src/manifest.json"), to: "manifest.json" },
-                { from: path.resolve(__dirname, "./src/public"), to: "" },
+                {from: path.resolve(__dirname, "./src/manifest.json"), to: "manifest.json"},
+                {from: path.resolve(__dirname, "./src/public"), to: ""},
             ]
         }),
         new WebpackExtReloader({

@@ -1,6 +1,13 @@
-console.log("hello world")
-console.log("fsd")
-console.log("dsfsdijfhxd")
-for (let i: number = 0; i < 15; i++) {
-	console.log("абра кадабра sdfndsnf");
+import { GPTRequestBuilder } from "@RequestBuilder/chatgptBuilder";
+
+const firstQuestion = document.querySelector('.que');
+
+console.log(firstQuestion)
+
+if (firstQuestion) {
+	const gptBuilder = new GPTRequestBuilder((firstQuestion as HTMLElement));
+
+	const config = gptBuilder.build();
+
+	console.log(config);
 }

@@ -1,4 +1,4 @@
-import { ConfigAIBuilder } from "./AiConfigBuilder";
+import { ChooseConfig } from "./ChooseAi";
 
 const toggleButton: HTMLElement | null = document.getElementById("toggleButton");
 const statusText: HTMLElement | null = document.getElementById("statusText");
@@ -28,7 +28,7 @@ form.setAttribute("class", "ai-variants")
 
 btn?.addEventListener("click", () => {
 	btn.classList.toggle("active");
-	const listOfAi = ConfigAIBuilder.getList();
+	const listOfAi = ChooseConfig.getList();
 
 	for (let i = 0; i < listOfAi.length; i++) {
 		const element = document.createElement("label");
