@@ -1,5 +1,6 @@
-import { QuestionParser } from "@src/QuestionParser";
+import { IParsingResult, QuestionParser } from "@src/QuestionParser";
 import { ImageParser } from "@QuestionParser/ImageParser";
+import { PromptCreator } from "@QuestionParser/PromptCreator";
 
 export interface AiRequest {
 	model: string;
@@ -27,8 +28,10 @@ export abstract class AbstractAIRequestBuilder<T extends AiRequest> {
 		return this.aiRequestData;
 	}
 
-	private readText(): void {
-
+	protected readText(): string {
+		const parsingTextResult: IParsingResult = this.taskParser.parse();
+		const promptCreator = new PromptCreator(parsingTextResult);
+		return promptCreator.createPrompt();
 	}
 
 	private readImage() {

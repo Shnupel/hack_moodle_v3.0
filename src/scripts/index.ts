@@ -6,8 +6,7 @@ console.log(firstQuestion)
 
 if (firstQuestion) {
 	const gptBuilder = new GPTRequestBuilder((firstQuestion as HTMLElement));
+	const obj = gptBuilder.build();
 
-	const config = gptBuilder.build();
-
-	console.log(config);
+	console.log(obj)
 }

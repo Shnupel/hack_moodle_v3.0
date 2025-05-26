@@ -11,20 +11,18 @@ export enum QuestionTypes {
 }
 
 
-interface IParsingResult {
+export interface IParsingResult {
 	type: QuestionTypes;
-	answerOptions: string;
+	data: string;
 }
 
 class AnswerParser {
-	constructor() {
-		if (new.target == AnswerParser) throw new Error("You cannot create an instance of the AnswerParser class");
-	}
+	constructor() {}
 
 	public static parseTrueFalseQuestion(question: HTMLElement): IParsingResult {
 		return {
 			type: QuestionTypes.TRUE_FALSE,
-			answerOptions: "\n Possible answers: True or False",
+			data: "\n Possible answers: True or False",
 		}
 	}
 
@@ -32,7 +30,7 @@ class AnswerParser {
 	public static parseShortAnswer(question: HTMLElement): IParsingResult {
 		return {
 			type: QuestionTypes.SHORT_ANSWER,
-			answerOptions: ""
+			data: ""
 		}
 	}
 
@@ -44,7 +42,7 @@ class AnswerParser {
 	public static defaultParse(question: HTMLElement): IParsingResult {
 		return {
 			type: QuestionTypes.DEFAULT_TASK,
-			answerOptions: ""
+			data: ""
 		}
 	}
 
@@ -67,7 +65,7 @@ class AnswerParser {
 
 		return {
 			type: QuestionTypes.MATCH,
-			answerOptions: qText
+			data: qText
 		};
 	}
 
@@ -97,9 +95,21 @@ class AnswerParser {
 
 		return {
 			type: qType,
-			answerOptions: qText
+			data: qText
 		};
 	}
+}
+
+const ANSWER_PARSERS: {
+	[key in QuestionTypes]: (taskElemn: HTMLElement) => IParsingResult;
+} = {
+	[QuestionTypes.TRUE_FALSE]:      AnswerParser.parseTrueFalseQuestion,
+	[QuestionTypes.MATCH]:           AnswerParser.parseMatch,
+	[QuestionTypes.SHORT_ANSWER]:    AnswerParser.parseShortAnswer,
+	[QuestionTypes.NUMERICAL]:       AnswerParser.parseNumerical,
+	[QuestionTypes.MULTIPLE_CHOICE]: AnswerParser.parseMultipleChoice,
+	[QuestionTypes.SINGLE_CHOICE]:   AnswerParser.parseMultipleChoice,
+	[QuestionTypes.DEFAULT_TASK]:    AnswerParser.defaultParse,
 }
 
 export class QuestionParser {
@@ -114,8 +124,33 @@ export class QuestionParser {
 		return ((this.task.querySelector("div.qtext") as HTMLElement).innerText || "") + "\n";
 	}
 
+	private determineTaskType(): QuestionTypes {
+		for (const questionType of Object.values(QuestionTypes)) {
+			if (this.task.classList.contains(questionType)) {
+				return questionType;
+			}
+		}
 
+		return QuestionTypes.DEFAULT_TASK;
+	}
 
+	private parseAnswerOptions(): IParsingResult {
+		const qType: QuestionTypes = this.determineTaskType();
+
+		const functionParser: (elem: HTMLElement) => IParsingResult = ANSWER_PARSERS[qType] ?? AnswerParser.defaultParse;
+
+		return functionParser(this.task);
+	}
+
+	public parse(): IParsingResult {
+		const condition = this.parseCondition();
+		const answers = this.parseAnswerOptions();
+
+		return {
+			type: answers.type,
+			data: condition + "\n" + answers
+		}
+	}
 }
 
 export type TaskParserType = typeof QuestionParser;
