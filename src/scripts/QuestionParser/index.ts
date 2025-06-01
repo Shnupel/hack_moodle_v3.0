@@ -36,7 +36,7 @@ class AnswerParser {
 
 	// may be fix it?
 	public static parseNumerical(question: HTMLElement): IParsingResult {
-		return this.parseShortAnswer(question);
+		return AnswerParser.parseShortAnswer(question);
 	}
 
 	public static defaultParse(question: HTMLElement): IParsingResult {
@@ -114,14 +114,12 @@ const ANSWER_PARSERS: {
 
 export class QuestionParser {
 	private readonly task: HTMLElement;
-	private readonly imageParser: ImageParser
 	constructor(task: HTMLElement) {
 		this.task = task;
-		this.imageParser = new ImageParser();
 	}
 
 	private parseCondition(): string {
-		return ((this.task.querySelector("div.qtext") as HTMLElement).innerText || "") + "\n";
+		return ((this.task.querySelector("div .qtext") as HTMLElement).innerText || "") + "\n";
 	}
 
 	private determineTaskType(): QuestionTypes {
@@ -148,7 +146,7 @@ export class QuestionParser {
 
 		return {
 			type: answers.type,
-			data: condition + "\n" + answers
+			data: condition + "\n" + answers.data
 		}
 	}
 }

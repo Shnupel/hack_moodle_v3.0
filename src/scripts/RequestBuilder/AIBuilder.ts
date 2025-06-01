@@ -1,5 +1,5 @@
 import { IParsingResult, QuestionParser } from "@src/QuestionParser";
-import { ImageParser } from "@QuestionParser/ImageParser";
+import { ImageDataType, ImageParser } from "@QuestionParser/ImageParser";
 import { PromptCreator } from "@QuestionParser/PromptCreator";
 
 export interface AiRequest {
@@ -15,17 +15,15 @@ export abstract class AbstractAIRequestBuilder<T extends AiRequest> {
 	protected aiRequestData: RequestData;
 
 	private readonly taskParser: QuestionParser;
+	private readonly imageParser: ImageParser;
 
-	protected constructor(taskParser: QuestionParser) {
+	protected constructor(taskParser: QuestionParser, imageParser: ImageParser) {
 		this.taskParser = taskParser;
+		this.imageParser = imageParser;
 		this.aiRequestData = {
 			text: "request text",
 			images: []
 		};
-	}
-
-	protected get getRequestData(): RequestData {
-		return this.aiRequestData;
 	}
 
 	protected readText(): string {
@@ -34,8 +32,8 @@ export abstract class AbstractAIRequestBuilder<T extends AiRequest> {
 		return promptCreator.createPrompt();
 	}
 
-	private readImage() {
-
+	protected readImage(): ImageDataType[] {
+		return this.imageParser.getImagesConfigs();
 	}
 
 	protected abstract addImage(image: HTMLElement): void;

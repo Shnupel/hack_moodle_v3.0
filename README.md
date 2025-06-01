@@ -26,7 +26,7 @@ npm run build
 
 ## 🔧 Architecture
 - **Webpack**
-    - Entry points: `index.ts` (content script), `background.ts` (background script)
+    - Entry points: `ChatgptBuilder.ts` (content script), `background.ts` (background script)
     - TypeScript via `ts-loader`
     - Auto-reload via `webpack-ext-reloader`
 - **Manifest V3**: Service Worker instead of background pages
@@ -81,7 +81,7 @@ npm run build
 
 ## 🔧 Architecture
 - **Webpack**
-    - Entry points: `index.ts` (content script), `background.ts` (background script)
+    - Entry points: `ChatgptBuilder.ts` (content script), `background.ts` (background script)
     - TypeScript via `ts-loader`
     - Auto-reload via `webpack-ext-reloader`
 - **Manifest V3**: Service Worker instead of background pages
@@ -103,3 +103,25 @@ hack_moodle_v3/
 ## 📜 License
 MIT License  
 [License details](https://github.com/shnupel/hack_moodle_v3/blob/main/LICENSE)
+
+project architecture: 
+# Project Architecture 🏗️
+
+## Overview
+This project uses a modular architecture designed for extensibility and clarity, following best practices for technical documentation.
+
+## Core Components
+### 1. AI Configuration Builders
+```plaintext
+AIBuilder (abstract)
+├── GPTBuilder (OpenAI integration)
+├── ClaudeBuilder (Anthropic integration)
+└── DeepSeekBuilder (Extendable template)
+
+```
+
+```graph LR
+A[Input Questions] --> B{QuestionParser}
+B --> C[AnswerParser]
+C --> D[AI Configuration]
+```

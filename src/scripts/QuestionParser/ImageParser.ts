@@ -5,12 +5,12 @@ export interface ImageDataType {
 
 
 export class ImageParser {
-	constructor() {	}
+	private readonly question: HTMLElement;
+	constructor(question: HTMLElement) {
+		this.question = question;
+	}
 
-	public static parseImage(element: HTMLImageElement): ImageDataType | null {
-		const image = element.querySelector(".qtext img") as HTMLImageElement;
-
-		if (!image) return null;
+	private parseImage(image: HTMLImageElement): ImageDataType {
 
 		// try {
 		// image.crossOrigin = "anonymous";
@@ -53,5 +53,15 @@ export class ImageParser {
 			isLink: false,
 			data: imageBase64,
 		};
+	}
+
+	private readImages(): HTMLImageElement[] {
+		const taskElement = this.question.querySelector(".content") as HTMLImageElement;
+		return Array.from(taskElement.querySelectorAll("img"));
+	}
+
+	public getImagesConfigs(): ImageDataType[] {
+		const imageElements = this.readImages();
+		return imageElements.map(imageElement => this.parseImage(imageElement));
 	}
 }

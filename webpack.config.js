@@ -9,7 +9,7 @@ const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
 export default {
     entry: {
-        content: path.resolve(__dirname, "./src/scripts/index.ts"),
+        content: path.resolve(__dirname, "./src/scripts/ChatgptBuilder.ts"),
         background: path.resolve(__dirname, "./src/scripts/background.ts"),
         popup: path.resolve(__dirname, "./src/scripts/popup.ts"),
     },
