@@ -31,14 +31,14 @@ class ProgramRunner {
 	public async run() {
 		const requests = this.createRequests(this.getQuestionElements());
 
+		console.log(requests);
+
 		const client = this.createAiClient();
 
 		// @ts-ignore
 		const responsesFromAi: Promise<Response>[] = requests.map(request => client.sendRequest(request));
 
 		const results = await Promise.all(responsesFromAi);
-
-		console.log(results)
 	}
 }
 

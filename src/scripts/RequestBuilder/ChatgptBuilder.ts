@@ -16,7 +16,7 @@ export interface GPTRequest extends AiRequest {
 
 export class GPTRequestBuilder extends AbstractAIRequestBuilder<GPTRequest> {
 	private request: GPTRequest = {
-		model: "GPT",
+		model: "gpt-4.1-nano",
 		proxyApyLink: "https://api.proxyapi.ru/openai/v1/responses",
 		input: [{
 			role: "user",
