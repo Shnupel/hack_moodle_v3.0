@@ -48,6 +48,10 @@ class ProgramRunner {
 		// function handleMessage(message: any) {
 		// 	console.log(message);
 		// }
+
+		const client = this.createAiClient();
+
+
 	}
 }
 

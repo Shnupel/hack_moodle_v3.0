@@ -10,7 +10,7 @@ const __dirname = path.dirname(fileURLToPath(import.meta.url));
 export default {
     entry: {
         content: path.resolve(__dirname, "./src/scripts/index.ts"),
-        background: path.resolve(__dirname, "./src/scripts/background.ts"),
+        background: path.resolve(__dirname, "./src/scripts/background/index.ts"),
         popup: path.resolve(__dirname, "./src/scripts/popup.ts"),
     },
     watch: true,

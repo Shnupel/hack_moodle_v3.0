@@ -29,7 +29,7 @@ interface ChatCompletion {
 export class GPTClient extends AbstractAiClient<GPTRequest> {
 	constructor() { super()	}
 
-	private createRequest(request: GPTRequest): Promise<Response> {
+	public createRequest(request: GPTRequest): Promise<Response> {
 		const testPayload = {
 			input: [
 				{
@@ -49,9 +49,5 @@ export class GPTClient extends AbstractAiClient<GPTRequest> {
 			},
 			body: JSON.stringify(testPayload)
 		})
-	}
-
-	public sendRequest(request: GPTRequest): Promise<Response> {
-		return this.createRequest(request);
 	}
 }

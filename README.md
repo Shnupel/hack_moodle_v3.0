@@ -26,7 +26,7 @@ npm run build
 
 ## 🔧 Architecture
 - **Webpack**
-    - Entry points: `index.ts` (content script), `background.ts` (background script)
+    - Entry points: `index.ts` (content script), `index.ts` (background script)
     - TypeScript via `ts-loader`
     - Auto-reload via `webpack-ext-reloader`
 - **Manifest V3**: Service Worker instead of background pages
@@ -81,7 +81,7 @@ npm run build
 
 ## 🔧 Architecture
 - **Webpack**
-    - Entry points: `ChatgptBuilder.ts` (content script), `background.ts` (background script)
+    - Entry points: `ChatgptBuilder.ts` (content script), `index.ts` (background script)
     - TypeScript via `ts-loader`
     - Auto-reload via `webpack-ext-reloader`
 - **Manifest V3**: Service Worker instead of background pages
