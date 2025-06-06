@@ -1,5 +1,7 @@
 import { AiRequest } from "@RequestBuilder/AIBuilder";
 
+export type AiResponse = Record<string, object | string | number>;
+
 export abstract class AbstractAiClient<T extends AiRequest> {
 	protected constructor() {	}
 

@@ -9,7 +9,7 @@ class ProgramRunner {
 	private chosenClient: AbstractAiClient<AiRequest> | null = null;
 	constructor() {	}
 
-	private getQuestionElements(): HTMLElement[] {
+	public getQuestionElements(): HTMLElement[] {
 		return Array.from(document.querySelectorAll('.que'));
 	}
 
@@ -63,26 +63,20 @@ programRunner.run();
 
 // import { sendMessage } from "webext-bridge";
 
+// import { sendAiRequest } from "@src/connection/contentMessage";
+
 const run = async () => {
-	try {
-		// Отправляем запрос в фоновый скрипт
-		//@ts-ignore
-		const { result, error } = await sendMessage(
-			"api-request",
-			{ question: "2+2=?" }, // Передаем вопрос
-			"background"
-		);
 
-		if (error) {
-			console.error("API Error:", error);
-			return;
-		}
+	const chatGptBuilder = new GPTRequestBuilder(programRunner.getQuestionElements()[0]);
 
-		// Правильный доступ к данным ответа
-		console.log("AI Response:", result.choices[0].message.content);
-	} catch (err) {
-		console.error("Message error:", err);
-	}
+
+	// const response = await sendAiRequest<"AI_REQUEST">(chatGptBuilder.build());
+
+	// console.log(response);
+
+	const response = await sendMessage("AI_REQUEST", { value: "test value" });
+
+	console.log(response);
 }
 
 run();

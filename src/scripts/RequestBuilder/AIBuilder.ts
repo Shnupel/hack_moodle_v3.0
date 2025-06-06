@@ -2,7 +2,7 @@ import { IParsingResult, QuestionParser } from "@src/QuestionParser";
 import { ImageDataType, ImageParser } from "@QuestionParser/ImageParser";
 import { PromptCreator } from "@QuestionParser/PromptCreator";
 
-export interface AiRequest {
+export type AiRequest = {
 	model: string;
 }
 

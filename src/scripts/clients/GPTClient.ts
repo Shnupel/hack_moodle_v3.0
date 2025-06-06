@@ -1,4 +1,4 @@
-import { AbstractAiClient } from "@src/clients/AbstractAiClient";
+import { AbstractAiClient, AiResponse } from "@src/clients/AbstractAiClient";
 import { GPTRequest } from "@RequestBuilder/ChatgptBuilder";
 
 interface ChatCompletionMessage {
@@ -12,7 +12,7 @@ interface ChatCompletionChoice {
 	finish_reason: string;
 }
 
-interface ChatCompletion {
+interface ChatCompletionResponse extends AiResponse {
 	id: string;
 	object: 'chat.completion';
 	created: number;
@@ -29,7 +29,8 @@ interface ChatCompletion {
 export class GPTClient extends AbstractAiClient<GPTRequest> {
 	constructor() { super()	}
 
-	public createRequest(request: GPTRequest): Promise<Response> {
+	// !!! add as argument: request: GPTRequest
+	public createRequest(): Promise<Response> {
 		const testPayload = {
 			input: [
 				{
@@ -41,7 +42,8 @@ export class GPTClient extends AbstractAiClient<GPTRequest> {
 			],
 			model: "gpt-3.5-turbo"
 		};
-		return fetch(request.proxyApyLink, {
+		//!!! change to request.proxyApyLink
+		return fetch("https://api.proxyapi.ru/openai/v1/responses", {
 			method: "POST",
 			headers: {
 				"Content-Type": "application/json",
