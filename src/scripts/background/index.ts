@@ -32,7 +32,7 @@
 // });
 //
 
-// import { onMessage } from "@src/connection/backgroundMessage";
+import { onMessageWrapped } from "@src/connection/backgroundMessage";
 import { AiRequest } from "@RequestBuilder/AIBuilder";
 import { GPTClient } from "@src/clients/GPTClient";
 import { onMessage } from "webext-bridge/background";
@@ -43,8 +43,18 @@ import { onMessage } from "webext-bridge/background";
 //   return gptClient.createRequest();
 // })
 
-onMessage("AI_REQUEST", (data) => {
-  console.log(data);
+// onMessage("AI_REQUEST", async (data) => {
+//   const gptClient = new GPTClient();
+//
+//   const s = await gptClient.createRequest();
+//
+//   console.log(await s.json())
+//
+//   return "sdadf";
+// })
 
-  return "sdadf";
+onMessageWrapped("AI_REQUEST", async (request: AiRequest) => {
+  const gptClient = new GPTClient();
+
+  return gptClient.createRequest();
 })

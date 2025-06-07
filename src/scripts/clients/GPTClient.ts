@@ -36,7 +36,7 @@ export class GPTClient extends AbstractAiClient<GPTRequest> {
 				{
 					role: "user",
 					content: [
-						{ type: "text", text: "Hello! How are you?" }
+						{ type: "input_text", text: "Hello! How are you?" }
 					]
 				}
 			],
@@ -47,7 +47,7 @@ export class GPTClient extends AbstractAiClient<GPTRequest> {
 			method: "POST",
 			headers: {
 				"Content-Type": "application/json",
-				"Authorization": `Bearer sk-auPCuVqtlgdAaYMMrfmCxs0zQ6IEgSr9`
+				"Authorization": `Bearer sk-r88he4fDmrYqsjNvfc28RrvvOuNQ5RSB`
 			},
 			body: JSON.stringify(testPayload)
 		})

@@ -1,5 +1,5 @@
-// import { onMessage as rawOnMessage } from "webext-bridge/background";
-// import { MessagePayload } from "@src/connection/types";
+import { onMessage as rawOnMessage } from "webext-bridge/background";
+import { MessagePayload } from "@src/connection/types";
 //
 // export function onMessage<T extends keyof MessagePayload>(
 //   messageType: T,
@@ -22,3 +22,20 @@
 //   });
 // }
 //
+
+export function onMessageWrapped<T extends keyof MessagePayload>(
+	message: T,
+	requestFunction: (
+		request: MessagePayload[T]["request"],
+	) => Promise<MessagePayload[T]["response"]>,
+) {
+	return rawOnMessage<MessagePayload[T]["request"], MessagePayload[T]["response"]>(message, async ({ data }) => {
+		const response = await requestFunction(data as MessagePayload[T]["request"]);
+
+		const d = await response.json();
+
+		console.log(d, data);
+
+		return d;
+	});
+}
