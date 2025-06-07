@@ -1,6 +1,6 @@
-import { AbstractAIRequestBuilder, AiRequest } from "@RequestBuilder/AIBuilder";
-import { QuestionParser } from "@src/QuestionParser";
-import { ImageParser } from "@QuestionParser/ImageParser";
+import { AbstractAIRequestBuilder, AiRequest } from "@src/content/RequestBuilder/AIBuilder";
+import { QuestionParser } from "@src/content/QuestionParser";
+import { ImageParser } from "@src/content/QuestionParser/ImageParser";
 
 export interface GPTRequest extends AiRequest {
 	proxyApyLink: string

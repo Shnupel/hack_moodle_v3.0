@@ -1,12 +1,10 @@
 import { onMessage } from "@src/connection/backgroundMessage";
-import { GPTRequest } from "@RequestBuilder/ChatgptBuilder";
-import { AiRequest } from "@RequestBuilder/AIBuilder";
-import { GPTClient } from "@src/clients/GPTClient";
+import { GPTRequest } from "@src/content/RequestBuilder/ChatgptBuilder";
+import { AiRequest } from "@src/content/RequestBuilder/AIBuilder";
+import { GPTClient } from "@src/content/clients/GPTClient";
 
 onMessage("AI_REQUEST", async (requests: AiRequest[]) => {
   const gptClient = new GPTClient();
-
-  console.log("fsjdfh")
 
   const responsePromises = requests.map(request => gptClient.createRequest(request as GPTRequest))
 

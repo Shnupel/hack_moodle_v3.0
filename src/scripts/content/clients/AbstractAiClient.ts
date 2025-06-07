@@ -1,4 +1,4 @@
-import { AiRequest } from "@RequestBuilder/AIBuilder";
+import { AiRequest } from "@src/content/RequestBuilder/AIBuilder";
 
 export type AiResponse = Record<string, object | string | number>;
 

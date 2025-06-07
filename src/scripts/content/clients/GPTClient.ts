@@ -1,5 +1,5 @@
-import { AbstractAiClient, AiResponse } from "@src/clients/AbstractAiClient";
-import { GPTRequest } from "@RequestBuilder/ChatgptBuilder";
+import { AbstractAiClient, AiResponse } from "@src/content/clients/AbstractAiClient";
+import { GPTRequest } from "@src/content/RequestBuilder/ChatgptBuilder";
 
 interface ChatCompletionMessage {
 	role: 'system' | 'user' | 'assistant';
@@ -36,7 +36,7 @@ export class GPTClient extends AbstractAiClient<GPTRequest> {
 				{
 					role: "user",
 					content: [
-						{ type: "input_text", text: "Hello! How are you?" }
+						{ type: "input_text", text: "2+2=?" }
 					]
 				}
 			],
@@ -51,7 +51,7 @@ export class GPTClient extends AbstractAiClient<GPTRequest> {
 				"Content-Type": "application/json",
 				"Authorization": `Bearer sk-r88he4fDmrYqsjNvfc28RrvvOuNQ5RSB`
 			},
-			body: JSON.stringify(requestBody)
+			body: JSON.stringify(testPayload)
 		})
 	}
 }

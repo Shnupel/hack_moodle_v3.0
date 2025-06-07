@@ -1,5 +1,5 @@
-import type { AiRequest } from "@RequestBuilder/AIBuilder";
-import type { AiResponse } from "@src/clients/AbstractAiClient";
+import type { AiRequest } from "@src/content/RequestBuilder/AIBuilder";
+import type { AiResponse } from "@src/content/clients/AbstractAiClient";
 
 export type MessagePayload = {
   "AI_REQUEST": {

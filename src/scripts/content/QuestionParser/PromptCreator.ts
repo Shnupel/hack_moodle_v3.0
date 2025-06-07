@@ -1,4 +1,4 @@
-import { IParsingResult, QuestionTypes } from "@QuestionParser/index";
+import { IParsingResult, QuestionTypes } from "@src/content/QuestionParser/index";
 
 export class PromptCreator {
 	private readonly parsingResult: IParsingResult;

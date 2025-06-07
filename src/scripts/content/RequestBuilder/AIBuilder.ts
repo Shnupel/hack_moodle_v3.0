@@ -1,6 +1,6 @@
-import { IParsingResult, QuestionParser } from "@src/QuestionParser";
-import { ImageDataType, ImageParser } from "@QuestionParser/ImageParser";
-import { PromptCreator } from "@QuestionParser/PromptCreator";
+import { IParsingResult, QuestionParser } from "@src/content/QuestionParser";
+import { ImageDataType, ImageParser } from "@src/content/QuestionParser/ImageParser";
+import { PromptCreator } from "@src/content/QuestionParser/PromptCreator";
 
 export type AiRequest = {
 	model: string;

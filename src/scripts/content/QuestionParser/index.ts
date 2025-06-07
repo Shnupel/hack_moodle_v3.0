@@ -1,4 +1,4 @@
-import { ImageParser } from "@QuestionParser/ImageParser";
+import { ImageParser } from "@src/content/QuestionParser/ImageParser";
 
 export enum QuestionTypes {
 	TRUE_FALSE = "truefalse",
