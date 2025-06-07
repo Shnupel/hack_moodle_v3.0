@@ -2,7 +2,7 @@ import { GPTRequestBuilder } from "@RequestBuilder/ChatgptBuilder";
 import { AbstractAIRequestBuilder, AiRequest } from "@RequestBuilder/AIBuilder";
 import { AbstractAiClient } from "@src/clients/AbstractAiClient";
 import { GPTClient } from "@src/clients/GPTClient";
-import { sendMessage, onMessage } from "webext-bridge/content-script";
+import { sendAiRequests } from "@src/connection/contentMessage";
 
 class ProgramRunner {
 	private chosenAi: AbstractAIRequestBuilder<AiRequest> | null = null;
@@ -25,7 +25,7 @@ class ProgramRunner {
 		return new GPTClient();
 	}
 
-	private createRequests(questionElements: HTMLElement[]): AiRequest[] {
+	private createRequestsBody(questionElements: HTMLElement[]): AiRequest[] {
 		return questionElements.map(questionElement => this.createAiBuilder(questionElement).build());
 	}
 	
@@ -49,9 +49,9 @@ class ProgramRunner {
 		// 	console.log(message);
 		// }
 
-		const client = this.createAiClient();
+		const requests = this.createRequestsBody(this.getQuestionElements());
 
-
+		console.log(requests);
 	}
 }
 
@@ -59,24 +59,14 @@ const programRunner = new ProgramRunner();
 
 programRunner.run();
 
-
-
-// import { sendMessage } from "webext-bridge";
-
-// import { sendAiRequest } from "@src/connection/contentMessage";
-
 const run = async () => {
-
 	const chatGptBuilder = new GPTRequestBuilder(programRunner.getQuestionElements()[0]);
 
+	console.log(programRunner.getQuestionElements()[0]);
 
-	// const response = await sendAiRequest<"AI_REQUEST">(chatGptBuilder.build());
+	const responses = await sendAiRequests([chatGptBuilder.build(), chatGptBuilder.build()]);
 
-	// console.log(response);
+	console.log(responses, "dsf");
+};
 
-	const response = await sendMessage("AI_REQUEST", { value: "test value" });
-
-	console.log(response);
-}
-
-run();
+run()

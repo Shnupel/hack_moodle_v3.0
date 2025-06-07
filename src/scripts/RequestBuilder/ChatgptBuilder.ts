@@ -39,10 +39,10 @@ export class GPTRequestBuilder extends AbstractAIRequestBuilder<GPTRequest> {
 				image_url: ""
 			}
 			if (image.isLink) {
-				requestImgConfig.type = "image_url";
+				requestImgConfig.type = "input_image";
 				requestImgConfig.image_url = image.data;
 			} else {
-				requestImgConfig.type = "image_url";
+				requestImgConfig.type = "input_image";
 				requestImgConfig.image_url = "data:image/png;base64," + image.data;
 			}
 
@@ -52,7 +52,7 @@ export class GPTRequestBuilder extends AbstractAIRequestBuilder<GPTRequest> {
 
 	protected override addText(): void {
 		this.request.input[0].content.push({
-			type: "text",
+			type: "input_text",
 			text: this.readText()
 		})
 	}

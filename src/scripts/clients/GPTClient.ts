@@ -30,7 +30,7 @@ export class GPTClient extends AbstractAiClient<GPTRequest> {
 	constructor() { super()	}
 
 	// !!! add as argument: request: GPTRequest
-	public createRequest(): Promise<Response> {
+	public createRequest(request: GPTRequest): Promise<Response> {
 		const testPayload = {
 			input: [
 				{
@@ -43,13 +43,15 @@ export class GPTClient extends AbstractAiClient<GPTRequest> {
 			model: "gpt-3.5-turbo"
 		};
 		//!!! change to request.proxyApyLink
-		return fetch("https://api.proxyapi.ru/openai/v1/responses", {
+		const { proxyApyLink, ...requestBody } = request;
+		//"https://api.proxyapi.ru/openai/v1/responses"
+		return fetch(proxyApyLink, {
 			method: "POST",
 			headers: {
 				"Content-Type": "application/json",
 				"Authorization": `Bearer sk-r88he4fDmrYqsjNvfc28RrvvOuNQ5RSB`
 			},
-			body: JSON.stringify(testPayload)
+			body: JSON.stringify(requestBody)
 		})
 	}
 }

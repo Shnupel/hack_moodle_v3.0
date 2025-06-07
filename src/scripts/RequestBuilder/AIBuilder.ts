@@ -18,6 +18,7 @@ export abstract class AbstractAIRequestBuilder<T extends AiRequest> {
 	private readonly imageParser: ImageParser;
 
 	protected constructor(taskParser: QuestionParser, imageParser: ImageParser) {
+		console.log()
 		this.taskParser = taskParser;
 		this.imageParser = imageParser;
 		this.aiRequestData = {
